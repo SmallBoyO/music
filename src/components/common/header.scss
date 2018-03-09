@@ -1,0 +1,21 @@
+.header{
+  display: block;
+  height: 64px;
+  width: 100%;
+  line-height: 64px;
+  .headerfix{
+    z-index: 2;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    height: 64px;
+    width: 100%;
+    background-color: #d43c33;
+    h1{
+      margin: 0 10px 0 10px;
+      height: 25px;
+      line-height: 21px;
+      width: 142px;
+    }
+  }
+}

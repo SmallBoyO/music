@@ -1,34 +1,71 @@
 $background:#cccccc;
+body{
+  margin: 0 0 0 0;
+}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  background-color:  $background;
+  font-family: Helvetica, sans-serif;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+
+.content{
+  display : block;
+  padding-top: 40px;
 }
 .tabs{
-    display : flex;//使用flex布局
-    background-color: rgb(255, 255, 255);
-    height: 40px;
+  z-index: 2;
+  position: fixed;
+  display : flex;//使用flex布局
+  background-color: rgb(255, 255, 255);
+  height: 38px;
+  width: 100%;
+  top:64px;
+  justify-content:center;
+}
+.tabs:after{
+  content: "";
+  position: absolute;//绝对定位
+  width: 100%;
+  top:38px;
+  height: 1px;
+  border-bottom-width: 1px;
+  background-color: #ccc;
 }
 .tab{
   text-align: center;
   width: 33.33%;
   height: 100%;
   list-style: none;//去掉li的点
+  justify-content:center;
+  display: list-item;
 }
 .tabtxt{
   position: relative;//相对定位
-  width:50%;
   text-align: center;
+  display:inline-block;
+  padding: 0 2px 0 2px;
+  span {
+    line-height: 38px;
+    font-size: 15px;
+  }
+}
+.tab-selected .tabtxt{
+  span{
+    color: #d43c33;
+  }
 }
 .tab-selected .tabtxt:after{
   content: "";
   position: absolute;//绝对定位
   width: 100%;
-  height: 4px;
+  height: 2px;
   background: #d33a31;
   left: 0;
   top:36px;

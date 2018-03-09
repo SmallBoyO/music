@@ -1,34 +1,39 @@
 <template>
   <div>
+    <musicheader></musicheader>
+    <div class="content">
     <nav id="tabs" class="tabs">
-     <li class="tab tab-selected" @click="toggleTab('hotmusic')">
+      <li class="tab" :class="isselected('recommandmusic')" @click="toggleTab('recommandmusic')">
        <div class="tabtxt">
-         <a>热歌榜</a>
+          <span>推荐音乐</span>
+       </div>
+      </li>
+     <li class="tab" :class="isselected('hotmusic')" @click="toggleTab('hotmusic')">
+       <div class="tabtxt">
+         <span>热歌榜</span>
        </div>
      </li>
-     <li class="tab" @click="toggleTab('recommandmusic')">
-      <div class="tabtxt">
-         <a>推荐音乐</a>
-      </div>
-     </li>
-     <li class="tab" @click="toggleTab('searchmusic')">
+     <li class="tab" :class="isselected('searchmusic')" @click="toggleTab('searchmusic')">
        <div class="tabtxt">
-         <a>搜索</a>
+         <span>搜索</span>
        </div>
      </li>
    </nav>
-    <prince :is="currentTab" keep-alive></prince>
+   <prince :is="currentTab" keep-alive></prince>
+  </div>
   </div>
 </template>
 <script>
 import hotmusic from './hotmusic'
 import recommandmusic from './recommandmusic'
 import searchmusic from './searchmusic'
+import musicheader from '../common/musicheader'
 export default{
   components: {
     hotmusic,
     recommandmusic,
-    searchmusic
+    searchmusic,
+    musicheader
   },
   data () {
     return {
@@ -39,12 +44,19 @@ export default{
   methods: {
     toggleTab (tabname) {
       this.currentTab = tabname
+    },
+    isselected (tabname) {
+      console.log(tabname)
+      if (this.currentTab === tabname) {
+        return {'tab-selected': true}
+      } else {
+        return {'tab-selected': false}
+      }
     }
+  },
+  computed: {
   }
 }
 </script>
 <style lang="scss" type="text/css">
-.tabs{
-    background-color: "red"
-}
-<style>
+</style>
