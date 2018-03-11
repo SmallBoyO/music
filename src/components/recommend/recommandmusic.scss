@@ -29,6 +29,7 @@
 
 .recommand_songs_ul{
   display: block;
+  padding-bottom: 24px;
   .recommand_songs_li{
     float: left;
     display: block;
@@ -64,6 +65,25 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       padding: 0 6px 0 2px;
+    }
+  }
+}
+
+.newsonglist{
+  .newsong_item{
+    padding-left: 10px;
+    .item_content{
+      .item_content_left{
+        .songsinfo{
+          .sq_icon{
+            background-image: url(http://s3.music.126.net/m/s/img/index_icon_3x.png?49a82fe…);
+            background-size: 166px 97px;
+            width: 12px;
+            height: 8px;
+            line-height: 8px;
+          }
+        }
+      }
     }
   }
 }

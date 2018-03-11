@@ -50,6 +50,24 @@
           </a>
         </div>
       </div>
+      <h2 class="recommand_t1">最新音乐</h2>
+      <div class="newsonglist">
+        <a class="newsong_item">
+          <div class="item_content">
+            <div class="item_content_left">
+              <div>
+                sdsd
+              </div>
+              <div class="songsinfo">
+                <i class="sq_icon"></i>
+                222
+              </div>
+            </div>
+            <div class="item_content_right">
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </template>
