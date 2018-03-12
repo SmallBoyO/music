@@ -53,17 +53,85 @@
       <h2 class="recommand_t1">最新音乐</h2>
       <div class="newsonglist">
         <a class="newsong_item">
-          <div class="item_content">
+          <div class="item_content clearfix">
             <div class="item_content_left">
-              <div>
-                sdsd
+              <div class="songsname">
+                Super love
               </div>
               <div class="songsinfo">
                 <i class="sq_icon"></i>
-                222
+                xxx - Super love
               </div>
             </div>
             <div class="item_content_right">
+              <span class="play_song_icon"></span>
+            </div>
+          </div>
+        </a>
+        <a class="newsong_item">
+          <div class="item_content clearfix">
+            <div class="item_content_left">
+              <div class="songsname">
+                Super love
+              </div>
+              <div class="songsinfo">
+                <i class="sq_icon"></i>
+                xxx - Super love
+              </div>
+            </div>
+            <div class="item_content_right">
+              <span class="play_song_icon"></span>
+            </div>
+          </div>
+        </a>
+        <a class="newsong_item">
+          <div class="item_content clearfix">
+            <div class="item_content_left">
+              <div class="songsname">
+                Super love
+                <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
+              </div>
+              <div class="songsinfo">
+                <i class="sq_icon"></i>
+                xxx - Super love
+              </div>
+            </div>
+            <div class="item_content_right">
+              <span class="play_song_icon"></span>
+            </div>
+          </div>
+        </a>
+        <a class="newsong_item">
+          <div class="item_content clearfix">
+            <div class="item_content_left">
+              <div class="songsname">
+                Super love
+                <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
+              </div>
+              <div class="songsinfo">
+                <i class="sq_icon"></i>
+                xxx - Super love
+              </div>
+            </div>
+            <div class="item_content_right">
+              <span class="play_song_icon"></span>
+            </div>
+          </div>
+        </a>
+        <a class="newsong_item">
+          <div class="item_content clearfix">
+            <div class="item_content_left">
+              <div class="songsname">
+                Super love
+                <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
+              </div>
+              <div class="songsinfo">
+                <i class="sq_icon"></i>
+                xxx - Super love
+              </div>
+            </div>
+            <div class="item_content_right">
+              <span class="play_song_icon"></span>
             </div>
           </div>
         </a>

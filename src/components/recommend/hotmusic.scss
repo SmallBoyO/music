@@ -1,0 +1,128 @@
+.hotmusic{
+  display: block;
+  .hotmusiccontent{
+    position: relative;
+    display: block;
+    .hmhot{
+      position: relative;
+      display: block;
+      background: url(//s3.music.126.net/m/s/img/hot_music_bg_2x.jpg?f01a252389c26bcf016816242eaa6aee) no-repeat;
+      background-size: contain;
+      padding-top: 38.9%;
+      height: 0;
+      .hottop{
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 20px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .hottoppic{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .hot_icon{
+            width: 142px;
+            height: 67px;
+            background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28c3767992ca4bb6d4887c74880) no-repeat;
+            background-position: -24px -30px;
+            background-size: 166px 97px;
+          }
+          .hot_time{
+            color: hsla(0,0%,100%,.8);
+            margin-top: 10px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .hotend{
+      height: 55px;
+      line-height: 55px;
+      text-align: center;
+      span{
+        padding-right: 14px;
+        display: inline-block;
+        color: #999;
+        background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNCAyMiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJub25lIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJtMSAxbDEwIDEwLTEwIDEwIi8+PC9zdmc+) 100% no-repeat;
+        background-size: 7px 12px;
+      }
+    }
+  }
+}
+
+.newsonglist{
+  display: flex;
+  flex-direction:column;//flex-direction属性决定主轴的方向（即项目的排列方向）。column：主轴为垂直方向，起点在上沿。
+  position: relative;
+  .newsong_item{
+    padding-left: 10px;
+    display: flex;
+    .song_top{
+      width: 28px;
+      align-items: center;
+      font-size: 17px;
+      display: flex;
+      color: #999;
+    }
+    .song_top_cred{
+      color:  #df3436;
+    }
+    .item_content{
+      width: 100%;
+      display: flex;
+      border-style:solid;
+      border-width: 0 0 0.5px 0;
+      border-bottom-color: rgba(0,0,0,.1);
+      .item_content_right{
+        width: 7%;
+        padding: 0 10px 0 10px;
+        display: flex;
+        align-items: center;
+        .play_song_icon{
+          background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
+          background-size: 166px 97px;
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          background-position: -24px 0;
+        }
+      }
+      .item_content_left{
+        width: 93%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .songsname{
+          font-size: 17px;
+          color: #333;
+          .song_detail{
+            color: #888;
+          }
+        }
+        .songsinfo{
+          font-size: 12px;
+          color: #888;
+          .sq_icon{
+            background-image: url(http://s3.music.126.net/m/s/img/index_icon_3x.png?49a82fe…);
+            background-size: 166px 97px;
+            width: 12px;
+            height: 8px;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}
+.hmhot:after{
+  position: absolute;
+  content: " ";
+  background-color: rgba(0,0,0,.2);
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
