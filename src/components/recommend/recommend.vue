@@ -19,7 +19,9 @@
        </div>
      </li>
    </nav>
+    <transition name="slide-fade" mode="out-in">
    <prince :is="currentTab" keep-alive></prince>
+    </transition>
   </div>
   </div>
 </template>

@@ -1,0 +1,132 @@
+.searchmusic{
+  .searchitem{
+    .search{
+      .search_input{
+        padding: 15px 10px;
+        .input_cover{
+          position: relative;
+          border-radius:30px;
+          height: 30px;
+          background: #ebecec;
+          padding: 0px 30px;
+          .svg_search{
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNiAyNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjYzljOWNhIiBkPSJNMjUuMTgxLDIzLjUzNWwtMS40MTQsMS40MTRsLTcuMzE1LTcuMzE0CgkJQzE0LjcwOSwxOS4xMDcsMTIuNDYsMjAsMTAsMjBDNC40NzcsMjAsMCwxNS41MjMsMCwxMEMwLDQuNDc3LDQuNDc3LDAsMTAsMGM1LjUyMywwLDEwLDQuNDc3LDEwLDEwYzAsMi4zNDItMC44MTEsNC40OS0yLjE2LDYuMTk1CgkJTDI1LjE4MSwyMy41MzV6IE0xMCwyYy00LjQxOCwwLTgsMy41ODItOCw4czMuNTgyLDgsOCw4YzQuNDE4LDAsOC0zLjU4Miw4LThTMTQuNDE4LDIsMTAsMnoiLz48L3N2Zz4=);
+            width: 13px;
+            height: 13px;
+            position: absolute;
+            left: 0;
+            top:9px;
+            margin: 0 8px;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+          .search_input{
+            height: 30px;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            line-height: 18px;
+            background: transparent;//透明
+            outline: 0;//选中时的边框
+          }
+          .holder{
+            color:#c9c9c9;
+            font-size: 14px;
+            position: absolute;
+            top:5px;
+            pointer-events:none;//防止阻止鼠标点击
+          }
+        }
+      }
+      .search_default{
+        .hot_list{
+          padding: 15px 10px 0;
+          .title{
+            font-size: 12px;
+            line-height: 12px;
+            color: #666;
+            margin: 0;
+          }
+          .list{
+            margin: 10px 0 7px 0;
+            padding: 0;
+            .item{
+              position: relative;
+              display: inline-block;
+              list-style: none;
+              font-size: 14px;
+              line-height: 32px;
+              color: #333;
+              padding: 0 10px 0;
+              margin: 0  10px 10px 0px;
+              a{
+                  text-decoration:none;//没有下划线
+                  color: #333;
+              }
+            }
+            .item:after{
+              content: " ";
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              pointer-events:none;
+              width: 200%;
+              height: 200%;
+              border-width: 1px !important;
+              border: 0 solid rgba(0,0,0,.1);
+              border-color: #d3d4da;
+              border-radius: 32px;
+              transform-origin:top left;//变形原点为左上角
+              transform: scale(.5);
+            }
+          }
+        }
+        .search_history{
+          .list{
+            padding: 0;
+            .item{
+              list-style: none;
+              display: flex;
+              align-items: center;
+              .svg_history{
+                background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAzMCI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjYzljYWNhIiBkPSJtMTUgMzBjLTguMjg0IDAtMTUtNi43MTYtMTUtMTVzNi43MTYtMTUgMTUtMTUgMTUgNi43MTYgMTUgMTUtNi43MTYgMTUtMTUgMTVtMC0yOGMtNy4xOCAwLTEzIDUuODItMTMgMTNzNS44MiAxMyAxMyAxMyAxMy01LjgyIDEzLTEzLTUuODItMTMtMTMtMTNtNyAxNmgtOGMtLjU1MiAwLTEtLjQ0Ny0xLTF2LTEwYzAtLjU1My40NDgtMSAxLTFzMSAuNDQ3IDEgMXY5aDdjLjU1MyAwIDEgLjQ0NyAxIDFzLS40NDcgMS0xIDEiLz48L3N2Zz4=);
+                width: 15px;
+                height: 15px;
+                display: inline-block;
+                margin: 0 10px;
+                line-height: 21px;
+              }
+              .histry{
+                display: flex;
+                height: 45px;
+                align-items: center;
+                flex-grow:1;
+                .link{
+                  margin-right: 10px;
+                  line-height: 21px;
+                  font-size: 14px;
+                  text-align: left;
+                  flex-grow:1;
+                }
+                .close{
+                  margin: 0;
+                  height: 32px;
+                  width: 32px;
+                  line-height: 32px;
+                  .svg_close{
+                    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSIjOTk5ODk5IiBkPSJtMTMuMzc5IDEybDEwLjMzOCAxMC4zMzdjLjM4MS4zODEuMzgxLjk5OCAwIDEuMzc5cy0uOTk4LjM4MS0xLjM3OCAwbC0xMC4zMzgtMTAuMzM4LTEwLjMzOCAxMC4zMzhjLS4zOC4zODEtLjk5Ny4zODEtMS4zNzggMHMtLjM4MS0uOTk4IDAtMS4zNzlsMTAuMzM4LTEwLjMzNy0xMC4zMzgtMTAuMzM4Yy0uMzgxLS4zOC0uMzgxLS45OTcgMC0xLjM3OHMuOTk4LS4zODEgMS4zNzggMGwxMC4zMzggMTAuMzM4IDEwLjMzOC0xMC4zMzhjLjM4LS4zODEuOTk3LS4zODEgMS4zNzggMHMuMzgxLjk5OCAwIDEuMzc4bC0xMC4zMzggMTAuMzM4Ii8+PC9zdmc+);
+                    height: 12px;
+                    width: 12px;
+                    display: inline-block;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
