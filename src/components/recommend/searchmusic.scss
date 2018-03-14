@@ -127,6 +127,187 @@
           }
         }
       }
+      .search_tuijian{
+        .title{
+          color: #507daf;
+          font-size: 15px;
+          line-height: 50px;
+          font-weight: 400;
+          margin: 0 10px 0 0;
+          padding: 0 0 0 10px;
+        }
+      }
+      .search_res{
+        .match_list{
+          .title{
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            color: #666;
+            margin:0 0px 0 10px;
+          }
+          .match_list{
+            padding:0;
+            margin: 0;
+            .album{
+              .piccover:after{
+                content: "";
+                background-image: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28c3767992ca4bb6d4887c74880);
+                width: 10px;
+                height: 46px;
+                position: absolute;
+                background-size: 166px 97px;
+                background-position: 0 -30px;
+                top: 10px;
+                left:50px;
+              }
+            }
+            .match_item{
+              list-style: none;
+              a{
+                text-decoration:none !important;
+                .linkcover{
+                  padding: 8px 10px 8px 0px;
+                  margin: 0 0 0 10px;
+                  display: flex;
+                  align-items: center;
+                  position: relative;
+                  .piccover{
+                    margin: 0 10px 0 0;
+                    width: 50px;
+                    height: 50px;
+                    .pic{
+                      width: 100%;
+                      display: block;
+                    }
+                  }
+                  .describe{
+                    display: flex;
+                    flex-grow:1;
+                    flex-direction:column;
+                    .maindes{
+                      margin: 0;
+                      flex-grow:1;
+                      display: inline;
+                      font-size: 17px;
+                      line-height: 30px;
+                      overflow: hidden;
+                      white-space:nowrap;
+                      color: #333;
+                      font-weight: 400;
+                      p{
+                        display: inline;
+                        margin: 0;
+                        span{
+                          font-size: 17px;
+                          line-height: 30px;
+                          color: #507daf;
+                        }
+                      }
+                    }
+                    .addtional{
+                      margin: 0;
+                      span{
+                        font-size: 12px;
+                        line-height: 15px;
+                        color:#999;
+                      }
+                    }
+                  }
+                  .svg_detail{
+                    margin: 0 8px 0 10px;
+                    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAyNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBmaWxsPSJub25lIiBzdHJva2U9IiM5YjliOWIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNMi45MzkgMjMuOTM5IDEzLjg3OSAxMyAyLjkzOSAyLjA2MSIvPjwvc3ZnPg==);
+                    width: 8px;
+                    height: 13px;
+                    background-position: 0 0;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                  }
+                }
+                .linkcover:after{
+                  content: "";
+                  position: absolute;
+                  height: 200%;
+                  width: 200%;
+                  top:0;
+                  left:0;
+                  transform: scale(0.5);
+                  transform-origin:top left;//变形原点为左上角
+                  //border: 0 solid rgba(0,0,0,.1);
+                  border-style: solid;
+                  border-color: rgba(0,0,0,.1);
+                  border-bottom-width: 1px;
+                  border-top-width: 0;
+                  border-left-width: 0;
+                  border-right-width: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.sglist{
+  display: flex;
+  flex-direction:column;//flex-direction属性决定主轴的方向（即项目的排列方向）。column：主轴为垂直方向，起点在上沿。
+  position: relative;
+  .newsong_item{
+    padding-left: 10px;
+    display: flex;
+    .song_top{
+      width: 28px;
+      align-items: center;
+      font-size: 17px;
+      display: flex;
+      color: #999;
+    }
+    .song_top_cred{
+      color:  #df3436;
+    }
+    .item_content{
+      width: 100%;
+      display: flex;
+      border-style:solid;
+      border-width: 0 0 0.5px 0;
+      border-bottom-color: rgba(0,0,0,.1);
+      .item_content_right{
+        padding: 0 10px 0 10px;
+        display: flex;
+        align-items: center;
+        .play_song_icon{
+          background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
+          background-size: 166px 97px;
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          background-position: -24px 0;
+        }
+      }
+      .item_content_left{
+        flex-grow:1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .songsname{
+          font-size: 17px;
+          color: #333;
+          .song_detail{
+            color: #888;
+          }
+        }
+        .songsinfo{
+          font-size: 12px;
+          color: #888;
+          .sq_icon{
+            background-image: url(http://s3.music.126.net/m/s/img/index_icon_3x.png?49a82fe…);
+            background-size: 166px 97px;
+            width: 12px;
+            height: 8px;
+            display: inline-block;
+          }
+        }
+      }
     }
   }
 }

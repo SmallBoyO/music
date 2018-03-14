@@ -60,6 +60,94 @@
             </ul>
           </section>
         </div>
+        <section class="search_tuijian" v-if="!hasInput">
+          <h3 class="title">
+            搜索"helloworld"
+          </h3>
+        </section>
+        <div class="search_res">
+          <section class="match_list">
+            <h3 class="title">最佳匹配</h3>
+            <ul class="match_list">
+              <li class="match_item album">
+                <a href="#">
+                  <div class="linkcover">
+                    <figure class="piccover">
+                      <img src="http://p3.music.126.net/8GJv6s8lMXrKCePnTEuBgQ==/3304032445729895.webp?imageView&thumbnail=100x0&quality=75&tostatic=0&type=webp" class="pic">
+                    </figure>
+                    <article class="describe">
+                      <h4 class="maindes">专辑:
+                        <p>
+                          <span>Fate</span>
+                        </p>
+                      </h4>
+                      <p class="addtional">
+                        <span>Ravesplash</span>
+                      </p>
+                    </article>
+                    <i class="svg_detail"></i>
+                  </div>
+                </a>
+              </li>
+              <li class="match_item artist">
+                <a href="#">
+                  <div class="linkcover">
+                    <figure class="piccover">
+                      <img src="http://p3.music.126.net/8GJv6s8lMXrKCePnTEuBgQ==/3304032445729895.webp?imageView&thumbnail=100x0&quality=75&tostatic=0&type=webp" class="pic">
+                    </figure>
+                    <article class="describe">
+                      <h4 class="maindes">专辑:
+                        <p>
+                          <span>Fate</span>
+                        </p>
+                      </h4>
+                      <p class="addtional">
+                        <span>Ravesplash</span>
+                      </p>
+                    </article>
+                    <i class="svg_detail"></i>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </section>
+          <section class="song_list">
+            <div class="sglist">
+              <a class="newsong_item">
+                <div class="item_content clearfix">
+                  <div class="item_content_left">
+                    <div class="songsname">
+                      Super love
+                    </div>
+                    <div class="songsinfo">
+                      <i class="sq_icon"></i>
+                      xxx - Super love
+                    </div>
+                  </div>
+                  <div class="item_content_right">
+                    <span class="play_song_icon"></span>
+                  </div>
+                </div>
+              </a>
+              <a class="newsong_item">
+                <div class="item_content clearfix">
+                  <div class="item_content_left">
+                    <div class="songsname">
+                      Super love
+                    </div>
+                    <div class="songsinfo">
+                      <i class="sq_icon"></i>
+                      xxx - Super love
+                    </div>
+                  </div>
+                  <div class="item_content_right">
+                    <span class="play_song_icon"></span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </div>
