@@ -50,6 +50,9 @@ export default {
         this.$store.commit('changePlayingStatus', true)
       }
     }
+  },
+  created () {
+    this.$router.push('/playmusic')
   }
 }
 </script>
