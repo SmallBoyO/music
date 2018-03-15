@@ -54,67 +54,67 @@
 }
 
 .newsonglist{
+  display: flex;
+  flex-direction:column;//flex-direction属性决定主轴的方向（即项目的排列方向）。column：主轴为垂直方向，起点在上沿。
+  position: relative;
+  .newsong_item{
+    padding-left: 10px;
     display: flex;
-    flex-direction:column;//flex-direction属性决定主轴的方向（即项目的排列方向）。column：主轴为垂直方向，起点在上沿。
-    position: relative;
-    .newsong_item{
-      padding-left: 10px;
+    .song_top{
+      width: 28px;
+      align-items: center;
+      font-size: 17px;
       display: flex;
-      .song_top{
-        width: 28px;
+      color: #999;
+    }
+    .song_top_cred{
+      color:  #df3436;
+    }
+    .item_content{
+      width: 100%;
+      display: flex;
+      border-style:solid;
+      border-width: 0 0 0.5px 0;
+      border-bottom-color: rgba(0,0,0,.1);
+      .item_content_right{
+        padding: 0 10px 0 10px;
+        display: flex;
         align-items: center;
-        font-size: 17px;
-        display: flex;
-        color: #999;
+        .play_song_icon{
+          background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
+          background-size: 166px 97px;
+          display: inline-block;
+          width: 22px;
+          height: 22px;
+          background-position: -24px 0;
+        }
       }
-      .song_top_cred{
-        color:  #df3436;
-      }
-      .item_content{
-        width: 100%;
-        display: flex;
-        border-style:solid;
-        border-width: 0 0 0.5px 0;
-        border-bottom-color: rgba(0,0,0,.1);
-        .item_content_right{
-          padding: 0 10px 0 10px;
-          display: flex;
-          align-items: center;
-          .play_song_icon{
-            background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
-            background-size: 166px 97px;
-            display: inline-block;
-            width: 22px;
-            height: 22px;
-            background-position: -24px 0;
+      .item_content_left{
+        flex-grow:1;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        .songsname{
+          font-size: 17px;
+          color: #333;
+          .song_detail{
+            color: #888;
           }
         }
-        .item_content_left{
-          flex-grow:1;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          .songsname{
-            font-size: 17px;
-            color: #333;
-            .song_detail{
-              color: #888;
-            }
-          }
-          .songsinfo{
-            font-size: 12px;
-            color: #888;
-            .sq_icon{
-              background-image: url(http://s3.music.126.net/m/s/img/index_icon_3x.png?49a82fe…);
-              background-size: 166px 97px;
-              width: 12px;
-              height: 8px;
-              display: inline-block;
-            }
+        .songsinfo{
+          font-size: 12px;
+          color: #888;
+          .sq_icon{
+            background-image: url(http://s3.music.126.net/m/s/img/index_icon_3x.png?49a82fe…);
+            background-size: 166px 97px;
+            width: 12px;
+            height: 8px;
+            display: inline-block;
           }
         }
       }
     }
   }
+}
 
 .hmhot:after{
   position: absolute;
