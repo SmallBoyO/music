@@ -3,7 +3,9 @@ export default {
     state.songUrl = songUrl
   },
   changePlayingStatus (state, status) {
-    state.playingstatus = status
+    if (state.songUrl !== '') {
+      state.playingstatus = status
+    }
   },
   changeMusicDuration (state, duration) {
     state.musicduration = duration

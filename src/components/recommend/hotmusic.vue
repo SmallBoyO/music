@@ -7,21 +7,21 @@
             <div class="hot_icon">
             </div>
             <div class="hot_time">
-              更新日期：03月08日
+              更新日期：{{new Date(hotmusic.playlist.createTime).getMonth()+1}}
             </div>
           </div>
         </div>
       </div>
       <div class="hotcontent">
         <div class="newsonglist">
-          <a class="newsong_item">
+          <a class="newsong_item" v-for="(data,index) in hotmusic.playlist.tracks" :key="data.id">
             <div class="song_top song_top_cred">
-              01
+              {{index}}
             </div>
             <div class="item_content clearfix">
               <div class="item_content_left">
                 <div class="songsname">
-                  Super love
+                  {{data.name}}
                 </div>
                 <div class="songsinfo">
                   <i class="sq_icon"></i>
@@ -121,11 +121,22 @@
   </div>
 </template>
 <script>
+import {hotmusic} from '../../api/hot.js'
 export default{
   data () {
     return {
-
+      hotmusic: {}
     }
+  },
+  methods: {
+
+  },
+  mounted () {
+    hotmusic({}).then(data => {
+      this.hotmusic = data
+      this.hotmusic.playlist.tracks = this.hotmusic.playlist.tracks.slice(0, 20)
+      console.log(data)
+    })
   }
 }
 </script>

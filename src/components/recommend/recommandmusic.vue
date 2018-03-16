@@ -4,130 +4,29 @@
       <h2 class="recommand_t1">推荐歌单</h2>
       <div class="recommand_songs">
         <div class="recommand_songs_ul clearfix">
-          <a class="recommand_songs_li">
+          <a class="recommand_songs_li" v-for="data in recommendresources" :key="data.id">
             <div class="recommand_songs_image">
-              <img class="u-img" src="http://p1.music.126.net/EbXX5myf_jEgRUUcPOZFXg==/19071029184351830.webp?imageView&thumbnail=246x0&quality=75&tostatic=0&type=webp"/>
-              <span>100w</span>
+              <img class="u-img" :src="data.picUrl"/>
+              <span>{{parseFloat(data.playCount/10000).toFixed(1) +'万'}}</span>
             </div>
-            <p>回忆里的操场 课桌上的耳机</p>
-          </a>
-          <a class="recommand_songs_li">
-            <div class="recommand_songs_image">
-              <img class="u-img" src="http://p1.music.126.net/Og5AJdvpYEROajCsdn5lUA==/109951163172856345.webp?imageView&thumbnail=246x0&quality=75&tostatic=0&type=webp"/>
-              <span>100w</span>
-            </div>
-            <p>回忆里的操场 课桌上的耳机</p>
-          </a>
-          <a class="recommand_songs_li">
-            <div class="recommand_songs_image">
-              <img class="u-img" src="http://p1.music.126.net/EbXX5myf_jEgRUUcPOZFXg==/19071029184351830.webp?imageView&thumbnail=246x0&quality=75&tostatic=0&type=webp"/>
-              <span>100万</span>
-            </div>
-            <p>【日系/神曲】那些被称为神曲的歌（精选）</p>
-          </a>
-        </div>
-        <div class="recommand_songs_ul clearfix">
-          <a class="recommand_songs_li">
-            <div class="recommand_songs_image">
-              <img class="u-img" src="http://p1.music.126.net/EbXX5myf_jEgRUUcPOZFXg==/19071029184351830.webp?imageView&thumbnail=246x0&quality=75&tostatic=0&type=webp"/>
-              <span>100w</span>
-            </div>
-            <p>回忆里的操场 课桌上的耳机</p>
-          </a>
-          <a class="recommand_songs_li">
-            <div class="recommand_songs_image">
-              <img class="u-img" src="http://p1.music.126.net/Og5AJdvpYEROajCsdn5lUA==/109951163172856345.webp?imageView&thumbnail=246x0&quality=75&tostatic=0&type=webp"/>
-              <span>100w</span>
-            </div>
-            <p>回忆里的操场 课桌上的耳机</p>
-          </a>
-          <a class="recommand_songs_li">
-            <div class="recommand_songs_image">
-              <img class="u-img" src="http://p1.music.126.net/EbXX5myf_jEgRUUcPOZFXg==/19071029184351830.webp?imageView&thumbnail=246x0&quality=75&tostatic=0&type=webp"/>
-              <span>100万</span>
-            </div>
-            <p>【日系/神曲】那些被称为神曲的歌（精选）</p>
+            <p>{{data.name}}</p>
           </a>
         </div>
       </div>
       <h2 class="recommand_t1">最新音乐</h2>
       <div class="newsonglist">
-        <a class="newsong_item">
+        <a class="newsong_item" v-for="data in newsongs" :key="data.id">
           <div class="item_content clearfix">
             <div class="item_content_left">
               <div class="songsname">
-                Super love
+                {{data.name}}
               </div>
               <div class="songsinfo">
                 <i class="sq_icon"></i>
-                xxx - Super love
-              </div>
-            </div>
-            <div class="item_content_right">
-              <span class="play_song_icon"></span>
-            </div>
-          </div>
-        </a>
-        <a class="newsong_item">
-          <div class="item_content clearfix">
-            <div class="item_content_left">
-              <div class="songsname">
-                Super love
-              </div>
-              <div class="songsinfo">
-                <i class="sq_icon"></i>
-                xxx - Super love
-              </div>
-            </div>
-            <div class="item_content_right">
-              <span class="play_song_icon"></span>
-            </div>
-          </div>
-        </a>
-        <a class="newsong_item">
-          <div class="item_content clearfix">
-            <div class="item_content_left">
-              <div class="songsname">
-                Super love
-                <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
-              </div>
-              <div class="songsinfo">
-                <i class="sq_icon"></i>
-                xxx - Super love
-              </div>
-            </div>
-            <div class="item_content_right">
-              <span class="play_song_icon"></span>
-            </div>
-          </div>
-        </a>
-        <a class="newsong_item">
-          <div class="item_content clearfix">
-            <div class="item_content_left">
-              <div class="songsname">
-                Super love
-                <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
-              </div>
-              <div class="songsinfo">
-                <i class="sq_icon"></i>
-                xxx - Super love
-              </div>
-            </div>
-            <div class="item_content_right">
-              <span class="play_song_icon"></span>
-            </div>
-          </div>
-        </a>
-        <a class="newsong_item">
-          <div class="item_content clearfix">
-            <div class="item_content_left">
-              <div class="songsname">
-                Super love
-                <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
-              </div>
-              <div class="songsinfo">
-                <i class="sq_icon"></i>
-                xxx - Super love
+                <template v-for="(author,index) in data.song.artists">
+                  {{ index==0?author.name:' / '+author.name }}
+                </template>
+                   - {{data.song.album.name}}
               </div>
             </div>
             <div class="item_content_right">
@@ -140,11 +39,22 @@
   </div>
 </template>
 <script>
+import {recommendresource, newsong} from '../../api/recommend.js'
 export default{
   data () {
     return {
-
+      recommendresources: [],
+      newsongs: []
     }
+  },
+  mounted () {
+    recommendresource({}).then(data => {
+      this.recommendresources = data.result.slice(0, 6)
+    })
+    newsong({}).then(data => {
+      this.newsongs = data.result
+      console.log(data.result)
+    })
   }
 }
 </script>

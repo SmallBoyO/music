@@ -15,6 +15,7 @@
 <script>
 import { mapState } from 'vuex'
 import musicaudio from './components/musicaudio'
+// import {login} from './api/login.js'
 export default {
   name: 'App', //
   components: {
@@ -52,7 +53,10 @@ export default {
     }
   },
   created () {
-    this.$router.push('/playmusic')
+    // this.$router.push('/playmusic')
+    // login({phone: '15232502010', password: 'xxxxxx'}).then(data => {
+    //  console.log(data)
+  //  })
   }
 }
 </script>

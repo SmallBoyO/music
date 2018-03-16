@@ -1,5 +1,8 @@
 .hotmusic{
   display: block;
+  width: 100%;
+  overflow-y: scroll;
+  height: 100%;
   .hotmusiccontent{
     position: relative;
     display: block;

@@ -11,6 +11,7 @@
       left:0px;
       right:0px;
       height: 100%;
+      z-index: -1;
     }
     .songbg:after{
       position: absolute;
@@ -64,9 +65,7 @@
                   border-radius: 50%;
                   overflow: hidden;
                   //linear	动画从头到尾的速度是相同的
-                  animation: roate 10s infinite linear;
-                  //规定动画是否正在运行或暂停。默认是 "running"
-                  animation-play-state: paused;
+                  animation: roate 20s infinite linear;
                   .song_img{
                     width: 100%;
                     img{
@@ -74,13 +73,18 @@
                     }
                   }
                 }
+                .song_pause{
+                  //规定动画是否正在运行或暂停。默认是 "running"
+                  animation-play-state: paused;
+                }
                 .song_lgour{
                   position: absolute;
                   left: 0;
                   top: 0;
                   right: 0;
                   bottom: 0;
-                  animation: roate 10s infinite linear;
+                  animation: roate 15s infinite linear;
+                  z-index: 3;
                   .song_light{
                     background-image: url(http://s3.music.126.net/m/s/img/disc_light-ip6.png?996fc8a2bc62e1ab3f51f135fc459577);
                     position: absolute;
@@ -89,7 +93,6 @@
                     right: 0;
                     bottom: 0;
                     background-size: contain;
-                    z-index: 3;
                   }
                 }
               }
@@ -105,7 +108,76 @@
               }
             }
             .song_disk:after{
-              content:"";
+                content:"";
+                background-image: url(//s3.music.126.net/m/s/img/needle-ip6.png?be4ebbeb6befadfcae75ce174e7db862);
+                width: 96px;
+                height: 137px;
+                position: absolute;
+                left:133px;
+                top: -70px;
+                z-index: 4;
+                background-size: contain;
+            }
+          }
+          .song_info{
+            margin: 25px 0 0 0 ;
+            padding:0 35px;
+            height: 100px;
+            color: rgb(254, 254, 254);
+            .song_h2{
+              text-align: center;
+              display: block;
+              line-height: 1.1;
+              text-overflow:ellipsis;
+              overflow: hidden;
+              text-align: center;
+              white-space:nowrap;//段落中的文本不进行换行
+              margin: 0;
+              .song_name{
+                color: rgb(254, 254, 254);
+                font-size: 18px;
+                line-height: 19.8px;
+                white-space: nowrap;
+                font-weight: 400;
+              }
+              .song_gap{
+                color: rgb(254, 254, 254);
+                font-size: 18px;
+                line-height: 19.8px;
+                white-space: nowrap;
+                font-weight: 400;
+              }
+              .song_autr{
+                color: rgb(254, 254, 254);
+              }
+            }
+            .song_lrc{
+              margin: 14px 0 0 0 ;
+              position: relative;
+              .song_scroll{
+                height: 141px;
+                overflow: hidden;
+                .song_iner{
+                  text-align: center;
+                  .song_lritem{
+                    padding-bottom: 6px;
+                    font-size: 16px;
+                    line-height:1.5;
+                    margin: 0;
+                    padding-bottom: 6px;
+                    color: hsla(0,0%,100%,.6);
+                    .song_lrori{
+                      font-size: 16px;
+                      display: block;
+                      line-height: 1.2;
+                    }
+                    .song_lrtra{
+                      font-size: 16px;
+                      display: block;
+                    }
+                  }
+                }
+              }
             }
           }
         }
