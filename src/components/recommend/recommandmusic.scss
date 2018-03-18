@@ -1,8 +1,14 @@
+.appcontent{
+  overflow:hidden;   //关键
+  position:relative;
+}
 .recommand{
   display:block;
   width: 100%;
-  overflow-y:scroll;
+  overflow-y: scroll;
   height: 100%;
+  overflow:hidden;   //关键
+  position:relative;
 }
 .homerecommand{
   padding-top: 20px;

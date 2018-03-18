@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="appcontent">
     <musicheader></musicheader>
     <div class="content">
     <nav id="tabs" class="tabs">
@@ -61,4 +61,8 @@ export default{
 }
 </script>
 <style lang="scss" type="text/css">
+.content{
+  overflow:hidden;   //关键
+  position:relative;
+}
 </style>

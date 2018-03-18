@@ -2,10 +2,12 @@ $background:#cccccc;
 body{
   margin: 0 0 0 0;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
+  display: block;
 }
 #app {
   font-family: Helvetica, sans-serif;
+  display: block;
 }
 
 .clearfix:after {
