@@ -15,7 +15,7 @@
       </div>
       <h2 class="recommand_t1">最新音乐</h2>
       <div class="newsonglist">
-        <a class="newsong_item" v-for="data in newsongs" :key="data.id">
+        <a class="newsong_item" v-for="data in newsongs" :key="data.id" @click="playmusic(data.id)">
           <div class="item_content clearfix">
             <div class="item_content_left">
               <div class="songsname">
@@ -40,11 +40,23 @@
 </template>
 <script>
 import {recommendresource, newsong} from '../../api/recommend.js'
+import {getMusicUrlById} from '../../api/player.js'
 export default{
   data () {
     return {
       recommendresources: [],
       newsongs: []
+    }
+  },
+  methods: {
+    playmusic (id) {
+      console.log(id)
+      getMusicUrlById({id: id}).then(data => {
+        console.log(data)
+        this.$store.commit('changePlayingStatus', false)
+        this.$store.commit('changeSongs', data.data[0].url)
+        this.$router.push('/playmusic/' + id)
+      })
     }
   },
   mounted () {

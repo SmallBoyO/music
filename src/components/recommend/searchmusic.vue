@@ -5,11 +5,11 @@
         <form class="search_input" action="#" method="get">
           <div class="input_cover">
             <i class="svg_search"></i>
-            <input class="search_input" type="text" name="" value="">
-            <label class="holder" for="">搜索歌曲,歌手,专辑</label>
+            <input class="search_input" v-model="searchstr" type="text" name="" value="" @input="changesearchstr">
+            <label class="holder" for="" v-if="searchstr.length==0">搜索歌曲,歌手,专辑</label>
           </div>
         </form>
-        <div class="search_default" v-if="!hasInput">
+        <div class="search_default" v-if="!hasSearch && searchstr.length==0">
           <section class="hot_list">
             <h3 class="title">热门搜索</h3>
             <ul class="list">
@@ -60,84 +60,68 @@
             </ul>
           </section>
         </div>
-        <section class="search_tuijian" v-if="!hasInput">
-          <h3 class="title">
-            搜索"helloworld"
+        <section class="search_tuijian" v-if="!hasSearch && searchstr.length!=0">
+          <h3 class="title"  @click="search">
+            搜索"{{searchstr}}"
           </h3>
         </section>
-        <div class="search_res">
+        <div class="search_res" v-if="hasSearch">
           <section class="match_list">
             <h3 class="title">最佳匹配</h3>
             <ul class="match_list">
-              <li class="match_item album">
-                <a href="#">
-                  <div class="linkcover">
-                    <figure class="piccover">
-                      <img src="http://p3.music.126.net/8GJv6s8lMXrKCePnTEuBgQ==/3304032445729895.webp?imageView&thumbnail=100x0&quality=75&tostatic=0&type=webp" class="pic">
-                    </figure>
-                    <article class="describe">
-                      <h4 class="maindes">专辑:
-                        <p>
-                          <span>Fate</span>
+              <template v-for="data in mutimatch.orders">
+                <li :class="getSearchItemClass(data)" v-for="childdata in mutimatch[data]">
+                  <a href="#">
+                    <div class="linkcover">
+                      <figure class="piccover">
+                        <template v-if="data =='album'">
+                          <img :src="childdata.picUrl" class="pic">
+                        </template>
+                        <template v-if="data =='artist'">
+                        <img :src="childdata.img1v1Url" class="pic">
+                        </template>
+                      </figure>
+                      <article class="describe">
+                        <h4 class="maindes">
+                          <template v-if="data =='album'">
+                          专辑:
+                          </template>
+                          <template v-if="data =='artist'">
+                          歌手:
+                          </template>
+                          <p>
+                            <span>
+                              {{childdata.name}}
+                              <template v-if="data =='artist'">
+                              {{childdata.alias.length>0?'('+childdata.alias[0]+')':''}}
+                              </template>
+                            </span>
+                          </p>
+                        </h4>
+                        <p class="addtional">
+                          <span v-if="data =='album'">{{childdata.artist.name}}</span>
                         </p>
-                      </h4>
-                      <p class="addtional">
-                        <span>Ravesplash</span>
-                      </p>
-                    </article>
-                    <i class="svg_detail"></i>
-                  </div>
-                </a>
-              </li>
-              <li class="match_item artist">
-                <a href="#">
-                  <div class="linkcover">
-                    <figure class="piccover">
-                      <img src="http://p3.music.126.net/8GJv6s8lMXrKCePnTEuBgQ==/3304032445729895.webp?imageView&thumbnail=100x0&quality=75&tostatic=0&type=webp" class="pic">
-                    </figure>
-                    <article class="describe">
-                      <h4 class="maindes">专辑:
-                        <p>
-                          <span>Fate</span>
-                        </p>
-                      </h4>
-                      <p class="addtional">
-                        <span>Ravesplash</span>
-                      </p>
-                    </article>
-                    <i class="svg_detail"></i>
-                  </div>
-                </a>
-              </li>
+                      </article>
+                      <i class="svg_detail"></i>
+                    </div>
+                  </a>
+                </li>
+              </template>
             </ul>
           </section>
           <section class="song_list">
             <div class="sglist">
-              <a class="newsong_item">
+              <a class="newsong_item" v-for="(data,inde) in searchresdata" @click="playmusic(data.id)">
                 <div class="item_content clearfix">
                   <div class="item_content_left">
                     <div class="songsname">
-                      Super love
+                      {{data.name}}
                     </div>
                     <div class="songsinfo">
                       <i class="sq_icon"></i>
-                      xxx - Super love
-                    </div>
-                  </div>
-                  <div class="item_content_right">
-                    <span class="play_song_icon"></span>
-                  </div>
-                </div>
-              </a>
-              <a class="newsong_item">
-                <div class="item_content clearfix">
-                  <div class="item_content_left">
-                    <div class="songsname">
-                      Super love
-                    </div>
-                    <div class="songsinfo">
-                      <i class="sq_icon"></i>
-                      xxx - Super love
+                      <template v-for="(author,index) in data.artists">
+                        {{ index==0?author.name:' / '+author.name }}
+                      </template> - Super love
                     </div>
                   </div>
                   <div class="item_content_right">
@@ -153,10 +137,45 @@
   </div>
 </template>
 <script>
+import {search, multimatch} from '../../api/search.js'
+import {getMusicUrlById} from '../../api/player.js'
 export default{
   data () {
     return {
-      hasInput: true
+      hasSearch: false,
+      searchstr: '',
+      searchresdata: [],
+      mutimatch: {}
+    }
+  },
+  methods: {
+    search () {
+      this.hasSearch = true
+      multimatch({word: this.searchstr}).then(data => {
+        this.mutimatch = data.result
+        console.log(data)
+      })
+      search({word: this.searchstr}).then(data => {
+        this.searchresdata = data.result.songs
+        console.log(data)
+      })
+    },
+    getSearchItemClass (type) {
+      return 'match_item ' + type
+    },
+    changesearchstr () {
+      if (this.searchstr === '') {
+        this.hasSearch = false
+      }
+    },
+    playmusic (id) {
+      console.log(id)
+      getMusicUrlById({id: id}).then(data => {
+        console.log(data)
+        this.$store.commit('changePlayingStatus', false)
+        this.$store.commit('changeSongs', data.data[0].url)
+        this.$router.push('/playmusic/' + id)
+      })
     }
   }
 }

@@ -11,7 +11,7 @@ export default new Router({
       name: 'recommend',
       component: recommend
     }, {
-      path: '/playmusic',
+      path: '/playmusic/:id',
       component: playmusic
     }
   ]

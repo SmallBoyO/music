@@ -14,9 +14,9 @@
       </div>
       <div class="hotcontent">
         <div class="newsonglist">
-          <a class="newsong_item" v-for="(data,index) in hotmusic.playlist.tracks" :key="data.id">
-            <div class="song_top song_top_cred">
-              {{index}}
+          <a class="newsong_item" v-for="(data,index) in hotmusic.playlist.tracks" :key="data.id" @click="playmusic(data.id)">
+            <div :class="{song_top:true,song_top_cred:index<3}">
+              {{index>8?(index+1):('0'+(index+1))}}
             </div>
             <div class="item_content clearfix">
               <div class="item_content_left">
@@ -24,86 +24,7 @@
                   {{data.name}}
                 </div>
                 <div class="songsinfo">
-                  <i class="sq_icon"></i>
-                  xxx - Super love
-                </div>
-              </div>
-              <div class="item_content_right">
-                <span class="play_song_icon"></span>
-              </div>
-            </div>
-          </a>
-          <a class="newsong_item">
-            <div class="song_top song_top_cred">
-              01
-            </div>
-            <div class="item_content clearfix">
-              <div class="item_content_left">
-                <div class="songsname">
-                  Super love
-                </div>
-                <div class="songsinfo">
-                  <i class="sq_icon"></i>
-                  xxx - Super love
-                </div>
-              </div>
-              <div class="item_content_right">
-                <span class="play_song_icon"></span>
-              </div>
-            </div>
-          </a>
-          <a class="newsong_item">
-            <div class="song_top song_top_cred">
-              02
-            </div>
-            <div class="item_content clearfix">
-              <div class="item_content_left">
-                <div class="songsname">
-                  Super love
-                  <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
-                </div>
-                <div class="songsinfo">
-                  <i class="sq_icon"></i>
-                  xxx - Super love
-                </div>
-              </div>
-              <div class="item_content_right">
-                <span class="play_song_icon"></span>
-              </div>
-            </div>
-          </a>
-          <a class="newsong_item">
-            <div class="song_top song_top_cred">
-              03
-            </div>
-            <div class="item_content clearfix">
-              <div class="item_content_left">
-                <div class="songsname">
-                  Super love
-                  <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
-                </div>
-                <div class="songsinfo">
-                  <i class="sq_icon"></i>
-                  xxx - Super love
-                </div>
-              </div>
-              <div class="item_content_right">
-                <span class="play_song_icon"></span>
-              </div>
-            </div>
-          </a>
-          <a class="newsong_item">
-            <div class="song_top">
-              04
-            </div>
-            <div class="item_content clearfix">
-              <div class="item_content_left">
-                <div class="songsname">
-                  Super love
-                  <span class="song_detail">(2018央视财经“厉害了我的国”活动主题歌)</span>
-                </div>
-                <div class="songsinfo">
-                  <i class="sq_icon"></i>
+                  <i class="sq_icon" v-if="data.h.vd==0"></i>
                   xxx - Super love
                 </div>
               </div>
@@ -122,6 +43,7 @@
 </template>
 <script>
 import {hotmusic} from '../../api/hot.js'
+import {getMusicUrlById} from '../../api/player.js'
 export default{
   data () {
     return {
@@ -129,13 +51,23 @@ export default{
     }
   },
   methods: {
-
+    playmusic (id) {
+      console.log(id)
+      getMusicUrlById({id: id}).then(data => {
+        console.log(data)
+        this.$store.commit('changePlayingStatus', false)
+        this.$store.commit('changeSongs', data.data[0].url)
+        this.$router.push('/playmusic/' + id)
+      })
+    }
   },
   mounted () {
     hotmusic({}).then(data => {
       this.hotmusic = data
       this.hotmusic.playlist.tracks = this.hotmusic.playlist.tracks.slice(0, 20)
-      console.log(data)
+      console.log(this.hotmusic.playlist.tracks)
+      console.table(this.hotmusic.playlist.tracks[7])
+      console.table(this.hotmusic.playlist.tracks[8])
     })
   }
 }

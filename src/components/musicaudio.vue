@@ -1,5 +1,5 @@
 <template>
-  <audio :src="songUrl" ref="player" @timeupdate="updateCurTime" @durationchange="changeDuration"  @canplay="playMusic">
+  <audio :src="songUrl" ref="player" @timeupdate="updateCurTime" @durationchange="changeDuration"  @canplay="playMusic" @ended="ended">
     不支持
   </audio>
 </template>
@@ -19,6 +19,9 @@ export default{
     },
     updateCurTime () {
       this.$store.commit('changeCurTime', this.$refs.player.currentTime)
+    },
+    ended () {
+      this.$store.commit('changePlayingStatus', false)
     }
   },
   watch: {

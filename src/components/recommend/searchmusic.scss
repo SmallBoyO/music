@@ -184,6 +184,7 @@
                   .describe{
                     display: flex;
                     flex-grow:1;
+                    width: 1px;
                     flex-direction:column;
                     .maindes{
                       margin: 0;
@@ -195,6 +196,10 @@
                       white-space:nowrap;
                       color: #333;
                       font-weight: 400;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
+                      word-break: normal;
                       p{
                         display: inline;
                         margin: 0;
@@ -202,6 +207,10 @@
                           font-size: 17px;
                           line-height: 30px;
                           color: #507daf;
+                          overflow: hidden;
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                          word-break: normal;
                         }
                       }
                     }

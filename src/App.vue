@@ -2,13 +2,6 @@
   <div id="app" class="app">
     <musicaudio></musicaudio>
     <router-view/>
-    <button @click="play">
-      play(播放)
-    </button>
-    <button @click="pause">
-      pause(暂停)
-    </button>
-    <input v-model="newurl"/>
   </div>
 </template>
 
