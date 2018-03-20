@@ -27,52 +27,16 @@
             </div>
             <div class="song_info">
               <h2 class="song_h2">
-                <span class="song_name">月と花束（TV动画《Fate/EXTRA Last Encore》片尾曲）</span>
+                <span class="song_name">{{song.name}}</span>
                 <span class="song_gap">-</span>
-                <b class="song_autr">さユり</b>
+                <b class="song_autr">{{song.ar[0].name}}</b>
               </h2>
               <div class="song_lrc">
                 <div class="song_scroll">
                   <div class="song_iner" :style="song_linertransform">
-                    <p class="song_lritem" style="color: rgb(255, 255, 255);" v-for="data in lyrics">
+                    <p class="song_lritem" :style="wordstyle(index)" v-for="(data,index) in lyrics" :key="index+''">
                       <span class="song_lrori">{{data}}</span>
                       <span class="song_lrtra">&nbsp;</span>
-                    </p>
-                    <p class="song_lritem" style="color: rgb(255, 255, 255);">
-                      <span class="song_lrori">作曲 : さユり</span>
-                      <span class="song_lrtra">&nbsp;</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて1</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて2</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて3</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて4</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて5</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて6</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて7</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
-                    </p>
-                    <p class="song_lritem" style="">
-                      <span class="song_lrori">花を焼べて 詩を焼べて8</span>
-                      <span class="song_lrtra">拾花为柴 焚诗作薪</span>
                     </p>
                   </div>
                 </div>
@@ -82,17 +46,19 @@
         </div>
       </div>
     </div>
-    <button @click="add">add</button>
   </div>
 </template>
 
 <script>
-import {lyric} from '../../api/player.js'
+import {lyric, songdetail} from '../../api/player.js'
 export default {
   data () {
     return {
       translateY: 0,
-      lyrics: []
+      lyrics: [], // 字幕
+      lyrictimes: [], // 字幕时间节点
+      currentlyricsindex: 0, // 当前字幕位置
+      song: {}
     }
   },
   computed: {
@@ -108,10 +74,6 @@ export default {
     }
   },
   methods: {
-    add () {
-      console.log('add')
-      this.translateY -= 49
-    },
     pause () {
       console.log('pause')
       if (this.playingstatus === true) {
@@ -122,15 +84,38 @@ export default {
       }
     },
     getlyric (id) {
+      songdetail({id: id}).then(data => {
+        this.song = data.songs[0]
+      })
+
       lyric({id: id}).then(data => {
         console.log(data)
-        this.lyrics = data.lrc.lyric.split('\n')
-        for (var lyric in data.lrc.lyric.split('\n')) {
-          if (data.lrc.lyric.split('\n')[lyric] !== '') {
-            console.log(data.lrc.lyric.split('\n')[lyric].match('\\[(\\S+)\\]')[1])
+        // this.lyrics = data.lrc.lyric.split('\n')
+        var tempdata = []
+        var templyrics = []
+
+        var splitresult = data.lrc.lyric.split('\n')
+
+        for (var lyric in splitresult) {
+          if (splitresult[lyric] !== '') {
+            console.log(splitresult[lyric].replace(' ', ''))
+            if (data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1] !== '') {
+              tempdata.push(splitresult[lyric].replace(' ', '').match('\\[(\\S+)\\]')[1])
+              templyrics.push(data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1])
+            }
           }
         }
+        this.lyrics = templyrics
+        this.lyrictimes = tempdata
       })
+    },
+    wordstyle (index) {
+      let tempindex = index + ''
+      if (this.currentlyricsindex === tempindex) {
+        return 'color: rgb(255, 255, 255);'
+      } else {
+        return ''
+      }
     }
   },
   created () {
@@ -139,7 +124,20 @@ export default {
   },
   watch: {
     curTime: function (newvalue, oldvalue) {
-      console.log(newvalue)
+      let currenttime = 0
+      for (var index in this.lyrictimes) {
+        let minutes = this.lyrictimes[index].split(':')[0]
+        let seconds = this.lyrictimes[index].split(':')[1].split('.')[0]
+        let smallseconds = this.lyrictimes[index].split(':')[1].split('.')[1]
+        let time = 60 * parseFloat(minutes) + parseFloat(seconds) + 0.001 * (smallseconds)
+        if (newvalue > time) {
+          currenttime = index
+        } else {
+          break
+        }
+      }
+      this.currentlyricsindex = currenttime
+      this.translateY = -49 * currenttime + 49 * 1
     }
   }
 }

@@ -148,7 +148,8 @@
                 font-weight: 400;
               }
               .song_autr{
-                color: rgb(254, 254, 254);
+                color: hsla(0,0%,100%,.6);
+                font-size: 16px;
               }
             }
             .song_lrc{
@@ -159,6 +160,7 @@
                 overflow: hidden;
                 .song_iner{
                   text-align: center;
+                  transition: transform .3s ease-out,-webkit-transform .3s ease-out;
                   .song_lritem{
                     padding-bottom: 6px;
                     font-size: 16px;

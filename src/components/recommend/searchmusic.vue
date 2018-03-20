@@ -5,7 +5,7 @@
         <form class="search_input" action="#" method="get">
           <div class="input_cover">
             <i class="svg_search"></i>
-            <input class="search_input" v-model="searchstr" type="text" name="" value="" @input="changesearchstr">
+            <input class="search_input" v-model="searchstr" type="text" name="" value="" @input="changesearchstr" @keyup.enter="search">
             <label class="holder" for="" v-if="searchstr.length==0">搜索歌曲,歌手,专辑</label>
           </div>
         </form>
