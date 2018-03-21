@@ -170,12 +170,7 @@ export default{
     },
     playmusic (id) {
       console.log(id)
-      getMusicUrlById({id: id}).then(data => {
-        console.log(data)
-        this.$store.commit('changePlayingStatus', false)
-        this.$store.commit('changeSongs', data.data[0].url)
-        this.$router.push('/playmusic/' + id)
-      })
+      this.$router.push('/playmusic/' + id)
     }
   }
 }

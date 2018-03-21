@@ -51,6 +51,7 @@
 
 <script>
 import {lyric, songdetail} from '../../api/player.js'
+import {getMusicUrlById} from '../../api/player.js'
 export default {
   data () {
     return {
@@ -119,6 +120,10 @@ export default {
     }
   },
   created () {
+    getMusicUrlById({id: this.$route.params.id}).then(data => {
+      this.$store.commit('changePlayingStatus', false)
+      this.$store.commit('changeSongs', data.data[0].url)
+    })
     this.getlyric(this.$route.params.id)
     console.log(this.$route.params.id)
   },

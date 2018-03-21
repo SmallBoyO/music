@@ -43,7 +43,6 @@
 </template>
 <script>
 import {hotmusic} from '../../api/hot.js'
-import {getMusicUrlById} from '../../api/player.js'
 export default{
   data () {
     return {
@@ -53,12 +52,7 @@ export default{
   methods: {
     playmusic (id) {
       console.log(id)
-      getMusicUrlById({id: id}).then(data => {
-        console.log(data)
-        this.$store.commit('changePlayingStatus', false)
-        this.$store.commit('changeSongs', data.data[0].url)
-        this.$router.push('/playmusic/' + id)
-      })
+      this.$router.push('/playmusic/' + id)
     }
   },
   mounted () {

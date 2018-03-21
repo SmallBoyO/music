@@ -4,7 +4,7 @@
       <h2 class="recommand_t1">推荐歌单</h2>
       <div class="recommand_songs">
         <div class="recommand_songs_ul clearfix">
-          <a class="recommand_songs_li" v-for="data in recommendresources" :key="data.id">
+          <a class="recommand_songs_li" v-for="data in recommendresources" :key="data.id" @click="songsheet(data.id)">
             <div class="recommand_songs_image">
               <img class="u-img" :src="data.picUrl"/>
               <span>{{parseFloat(data.playCount/10000).toFixed(1) +'万'}}</span>
@@ -40,7 +40,6 @@
 </template>
 <script>
 import {recommendresource, newsong} from '../../api/recommend.js'
-import {getMusicUrlById} from '../../api/player.js'
 export default{
   data () {
     return {
@@ -51,12 +50,10 @@ export default{
   methods: {
     playmusic (id) {
       console.log(id)
-      getMusicUrlById({id: id}).then(data => {
-        console.log(data)
-        this.$store.commit('changePlayingStatus', false)
-        this.$store.commit('changeSongs', data.data[0].url)
-        this.$router.push('/playmusic/' + id)
-      })
+      this.$router.push('/playmusic/' + id)
+    },
+    songsheet (id) {
+      this.$router.push('/songsheet/' + id)
     }
   },
   mounted () {
