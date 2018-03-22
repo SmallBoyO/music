@@ -1,5 +1,6 @@
 export default {
   changeSongs (state, songUrl) {
+    console.log('changge song!!!')
     state.songUrl = songUrl
   },
   changePlayingStatus (state, status) {

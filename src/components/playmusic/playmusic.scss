@@ -77,7 +77,7 @@
                 }
                 .song_pause{
                   //规定动画是否正在运行或暂停。默认是 "running"
-                  animation-play-state: paused;
+                  animation-play-state: paused !important;
                 }
                 .song_lgour{
                   position: absolute;

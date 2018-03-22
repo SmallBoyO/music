@@ -155,8 +155,10 @@
         }
       }
       .info{
+        overflow:hidden;
+        position:relative;
+        padding-bottom: 18px;
         .info_content{
-          padding-bottom: 18px;
           word-wrap: break-word;
           word-break: break-all;
           white-space: normal;

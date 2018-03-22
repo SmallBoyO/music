@@ -16,7 +16,7 @@
                       <img :src="song.al.picUrl" alt=""/>
                     </div>
                   </div>
-                  <div class="song_lgour">
+                  <div :class="{song_lgour:true,song_pause:!playingstatus}">
                     <div class="song_light">
                     </div>
                   </div>
@@ -129,6 +129,7 @@ export default {
   created () {
     getMusicUrlById({id: this.$route.params.id}).then(data => {
       this.$store.commit('changePlayingStatus', false)
+      console.log('getMusicUrlById')
       this.$store.commit('changeSongs', data.data[0].url)
     })
     this.getlyric(this.$route.params.id)

@@ -7,6 +7,22 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+// const sess = window.sessionStorege
+// var mixin = {
+//  beforeRouteLeave (to, from, next) {
+//    console.log(to)
+//    const toRoute = to.path
+//    const fromRoute = from._pathconst
+//    const h = JSON.parse(sess.getItem(toRoute))
+//    if (h && h.history) {
+//      this.$destory()
+//      next()
+//    } else {
+//      next()
+//    }
+//  }
+// }
+// Vue.mixin(mixin)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

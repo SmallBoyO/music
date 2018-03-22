@@ -1,7 +1,9 @@
 <template>
   <div id="app" class="app">
     <musicaudio></musicaudio>
-    <router-view/>
+    <keep-alive >
+      <router-view/>
+    </keep-alive >
   </div>
 </template>
 
