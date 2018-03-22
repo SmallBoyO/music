@@ -1,11 +1,38 @@
 .songsheet{
   .playlist{
+    background-color: #f8f8f8 !important;
     .sheetheader{
       padding: 30px 10px 30px 15px;
+      overflow:hidden;   //关键
+      position:relative;
+      display: block;
       .head_bg{
-
+        //background-image: url("//music.163.com/api/img/blur/109951163133314190?param=170y170");
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        transform: scale(1.5);
+        z-index: 1;
+        filter: blur(20px);//模糊
+        -webkit-filter: blur(20px);//模糊
+      }
+      .head_bg:after{
+        content: "";
+        background-color: rgba(0,0,0,.25);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
       }
       .headwrap{
+        z-index: 2;
         display: flex;
         position: relative;
         .headleft{
@@ -35,9 +62,179 @@
             color: #fff;
             text-shadow: 1px 0 0 rgba(0,0,0,.15);
             background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMiAyMCI+PGcgb3BhY2l0eT0iLjE1Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiMwNDAwMDAiIGQ9Im0yMiAxNi43NzdjMCAxLjIzMy0xLjEyMSAyLjIzMy0yLjUwNiAyLjIzMy0xLjM4NCAwLTIuNTA2LTEtMi41MDYtMi4yMzN2LTIuNTUzYzAtMS4yMzQgMS4xMjItMi4yMzMgMi41MDYtMi4yMzMuMTc0IDAgLjM0My4wMTcuNTA2LjA0NnYtMS4zN2gtLjAzM2MuMDE3LS4yMi4wMzMtLjQ0MS4wMzMtLjY2NiAwLTQuNDE4LTMuNTgyLTgtOC04LTQuNDE4IDAtOCAzLjU4Mi04IDggMCAuMjI1LjAxNi40NDYuMDM0LjY2NmgtLjAzNHYxLjM3Yy4xNjMtLjAyOS4zMzMtLjA0Ni41MDUtLjA0NiAxLjM4NCAwIDIuNTA2Ljk5OSAyLjUwNiAyLjIzM3YyLjU1M2MwIDEuMjMzLTEuMTIyIDIuMjMzLTIuNTA2IDIuMjMzcy0yLjUwNS0uOTk5LTIuNTA1LTIuMjMzdi0yLjU1M2MwLS4yNTguMDU5LS41MDEuMTQ4LS43My0uMDg1LS4xNDgtLjE0OC0uMzEtLjE0OC0uNDkzdi0yLjY2N2MwLS4wMjMuMDEyLS4wNDMuMDEzLS4wNjctLjAwNC0uMDg4LS4wMTMtLjE3Ni0uMDEzLS4yNjYgMC01LjUyMyA0LjQ3Ny0xMCAxMC0xMCA1LjUyMyAwIDEwIDQuNDc3IDEwIDEwIDAgLjA5LS4wMDkuMTc4LS4wMTQuMjY2LjAwMi4wMjQuMDE0LjA0NC4wMTQuMDY3djJjMCAuMzA2LS4xNDUuNTY5LS4zNi43NTMuMjI0LjMzNC4zNi43Mi4zNiAxLjEzOHYyLjU1MiIvPjwvZz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNmZmYiIGQ9Im0yMCAxNi43NzdjMCAxLjIzMy0xLjEyMSAyLjIzMy0yLjUwNiAyLjIzMy0xLjM4NCAwLTIuNTA2LTEtMi41MDYtMi4yMzN2LTIuNTUzYzAtMS4yMzQgMS4xMjItMi4yMzMgMi41MDYtMi4yMzMuMTc0IDAgLjM0My4wMTcuNTA2LjA0NnYtMS4zN2gtLjAzM2MuMDE3LS4yMi4wMzMtLjQ0MS4wMzMtLjY2NiAwLTQuNDE4LTMuNTgyLTgtOC04LTQuNDE4IDAtOCAzLjU4Mi04IDggMCAuMjI1LjAxNi40NDYuMDM0LjY2NmgtLjAzNHYxLjM3Yy4xNjMtLjAyOS4zMzMtLjA0Ni41MDUtLjA0NiAxLjM4NCAwIDIuNTA2Ljk5OSAyLjUwNiAyLjIzM3YyLjU1M2MwIDEuMjMzLTEuMTIyIDIuMjMzLTIuNTA2IDIuMjMzcy0yLjUwNS0uOTk5LTIuNTA1LTIuMjMzdi0yLjU1M2MwLS4yNTguMDU5LS41MDEuMTQ4LS43My0uMDg1LS4xNDgtLjE0OC0uMzEtLjE0OC0uNDkzdi0yLjY2N2MwLS4wMjMuMDEyLS4wNDMuMDEzLS4wNjctLjAwNC0uMDg4LS4wMTMtLjE3Ni0uMDEzLS4yNjYgMC01LjUyMyA0LjQ3Ny0xMCAxMC0xMCA1LjUyMyAwIDEwIDQuNDc3IDEwIDEwIDAgLjA5LS4wMDkuMTc4LS4wMTQuMjY2LjAwMi4wMjQuMDE0LjA0NC4wMTQuMDY3djJjMCAuMzA2LS4xNDUuNTY5LS4zNi43NTMuMjI0LjMzNC4zNi43Mi4zNiAxLjEzOHYyLjU1MiIvPjwvc3ZnPg==);
-            background-repeat: no-repeat;//北京不重复
+            background-repeat: no-repeat;//背景不重复
             background-size: 11px 10px;
             background-position: 0 center;
+          }
+        }
+        .headleft:after{
+          content: "";
+          position: absolute;
+          background-image: linear-gradient(90deg,transparent,rgba(0,0,0,.2));
+          top: 0;
+          height: 18px;
+          width: 100%;
+        }
+        .headright{
+          margin: 0 0 0 12px;
+          .songsheetname{
+            font-size: 17px;
+            line-height: 1.3;
+            color: #fefefe;
+            font-weight: 400;
+            margin: 0;
+          }
+          .songsheetauth{
+            margin: 20px 0 0 0;
+            .authlink{
+              display: inline-block;
+              color: hsla(0,0%,100%,.7);
+              text-decoration: none;//去掉下划线
+              font-size: 14px;
+              .headeimg{
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                position: relative;
+                vertical-align: middle;//属性设置元素的垂直对齐方式。
+                img{
+                  width: 100%;
+                  border-radius: 50%;
+                }
+                .ava-icon-daren{
+                  background-image: url(//s3.music.126.net/m/s/img/usericn_2x.png?6423c0681bfb3358d5c684c9b998e412);
+                  width: 12px;
+                  height: 12px;
+                  position: absolute;
+                  background-repeat: no-repeat;
+                  background-size: 75px auto;
+                  background-position: -40px 0;
+                  right: -5px;
+                  bottom: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .songsheetinfo{
+      padding: 10px 0 0 0;
+      margin: 0 10px 0 15px;
+      color: #666;
+      .taglist{
+        margin: 0 -10px 10px 0;
+        position:relative;
+        line-height: 21px;
+        font-size: 14px;
+        .lstit_tag{
+          position:relative;
+          font-family: Helvetica, sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          font-weight: 400;
+          display: inline-block;
+          line-height: 21px;
+          padding: 1px 8px;
+          margin: 0 10px 0 0;
+        }
+        .lstit_tag:after{
+          content: "";
+          border-radius: 9999px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 200%;
+          height: 200%;
+          border-width: 1px !important;
+          border: 0 solid rgba(0,0,0,.1);
+          transform: scale(.5);
+          transform-origin: left top;
+          box-sizing: border-box;
+        }
+      }
+      .info{
+        .info_content{
+          padding-bottom: 18px;
+          word-wrap: break-word;
+          word-break: break-all;
+          white-space: normal;
+          span{
+            font-family: Helvetica, sans-serif;
+            font-size: 14px;
+            i{
+              font-style: normal;
+              line-height: 19px;
+              color: #666;
+              font-size: 14px;
+            }
+          }
+        }
+        .infohidden{
+            -webkit-line-clamp: 3;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+      }
+    }
+    .song_list{
+      h3{
+        font-size: 12px;
+        height: 23px;
+        line-height: 23px;
+        margin: 0;
+        color: #666;
+        font-weight: 400;
+        padding: 0 10px;
+        background-color: #eeeff0;
+      }
+      .list{
+        padding: 0;
+        margin: 0;
+        .list_item{
+          display: flex;
+          .item_left{
+            display: flex;
+            width: 40px;
+            font-size: 17px;
+            color: #999;
+            justify-content: center;
+            align-items: center;
+            -webkit-box-align: center;
+          }
+          .item_right{
+            display: flex;
+            flex-grow: 1;
+            .info{
+              padding: 6px 0;
+              display: block;
+              flex-grow: 1;
+              width: 0;//设置witdh=0在让  flex-grow: 1 撑开,这样宽度正好在左右两个元素中间
+              .song_name{
+                font-size: 17px;
+                font-weight: 400;
+              }
+              .song_info{
+                font-size: 13px;
+                color: #666;
+              }
+            }
+            .playicon{
+              display: flex;
+              align-items: center;//垂直主轴对齐方式
+              padding: 0 10px;
+              .play_song_icon{
+                background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
+                background-size: 166px 97px;
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                background-position: -24px 0;
+              }
+            }
           }
         }
       }

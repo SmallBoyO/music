@@ -12,6 +12,8 @@
       right:0px;
       height: 100%;
       z-index: -1;
+      filter: blur(20px);//模糊
+      -webkit-filter: blur(20px);//模糊
     }
     .songbg:after{
       position: absolute;

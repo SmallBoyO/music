@@ -1,7 +1,7 @@
 <template>
   <div class="musicplay">
     <div class="songwrap" @click="pause">
-      <div class="songbg" style='background-image:url("//music.163.com/api/img/blur/109951163170276615");opacity: 1;'>
+      <div class="songbg" :style='getbgimg()'>
         play
       </div>
       <div class="song_scroll_wrapper">
@@ -13,7 +13,7 @@
                 <div class="song_turn">
                   <div :class="{song_rollwrap:true,song_pause:!playingstatus}">
                     <div class="song_img">
-                      <img src="http://p1.music.126.net/0fNqjjWb3srRgcsb0w7Qzg==/109951163170276615.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0" alt=""/>
+                      <img :src="song.al.picUrl" alt=""/>
                     </div>
                   </div>
                   <div class="song_lgour">
@@ -100,14 +100,18 @@ export default {
         for (var lyric in splitresult) {
           if (splitresult[lyric] !== '') {
             console.log(splitresult[lyric].replace(' ', ''))
-            if (data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1] !== '') {
-              tempdata.push(splitresult[lyric].replace(' ', '').match('\\[(\\S+)\\]')[1])
-              templyrics.push(data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1])
+            var patt = /\[(\S+)\]/
+            if (patt.test(data.lrc.lyric.split('\n')[lyric])) {
+              if (data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1] !== '') {
+                tempdata.push(splitresult[lyric].replace(' ', '').match('\\[(\\S+)\\]')[1])
+                templyrics.push(data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1])
+              }
             }
           }
         }
         this.lyrics = templyrics
         this.lyrictimes = tempdata
+        console.log(tempdata)
       })
     },
     wordstyle (index) {
@@ -117,6 +121,9 @@ export default {
       } else {
         return ''
       }
+    },
+    getbgimg () {
+      return 'background-image:url("' + this.song.al.picUrl + '");opacity: 1;'
     }
   },
   created () {
@@ -142,7 +149,11 @@ export default {
         }
       }
       this.currentlyricsindex = currenttime
-      this.translateY = -49 * currenttime + 49 * 1
+      if (currenttime < 1) {
+        this.translateY = -49 * 0
+      } else {
+        this.translateY = -49 * currenttime + 49 * 1
+      }
     }
   }
 }

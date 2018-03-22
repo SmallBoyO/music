@@ -4,7 +4,16 @@
       <h2 class="recommand_t1">推荐歌单</h2>
       <div class="recommand_songs">
         <div class="recommand_songs_ul clearfix">
-          <a class="recommand_songs_li" v-for="data in recommendresources" :key="data.id" @click="songsheet(data.id)">
+          <a class="recommand_songs_li" v-for="(data,index) in recommendresources" v-if="index<3" :key="data.id" @click="songsheet(data.id)">
+            <div class="recommand_songs_image">
+              <img class="u-img" :src="data.picUrl"/>
+              <span>{{parseFloat(data.playCount/10000).toFixed(1) +'万'}}</span>
+            </div>
+            <p>{{data.name}}</p>
+          </a>
+        </div>
+        <div class="recommand_songs_ul clearfix">
+          <a class="recommand_songs_li" v-for="(data,index) in recommendresources" v-if="index>=3" :key="data.id" @click="songsheet(data.id)">
             <div class="recommand_songs_image">
               <img class="u-img" :src="data.picUrl"/>
               <span>{{parseFloat(data.playCount/10000).toFixed(1) +'万'}}</span>
