@@ -19,5 +19,5 @@ export default{
 </script>
 
 <style lang="scss" type="text/css">
-@import  "./header";
+@import  "./musicheader";
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="app">
     <musicaudio></musicaudio>
-    <keep-alive >
-      <router-view/>
-    </keep-alive >
+    <keep-alive>
+    <router-view/>
+  </keep-alive>
   </div>
 </template>
 
@@ -48,15 +48,18 @@ export default {
     }
   },
   created () {
+<<<<<<< HEAD
     // this.$router.push('/playmusic')
     // login({phone: '15232502010', password: 'xxxxxx'}).then(data => {
     //  console.log(data)
   //  })
+=======
+>>>>>>> 1c042e9... 修改文件结构  添加页面组件缓存(后退使用缓存 前进刷新组件)
   }
 }
 </script>
 
 <style lang="scss" type="text/css">
-@import  "./scss/reset";
+@import  "./scss/common";
 @import  "./scss/tab";
 </style>

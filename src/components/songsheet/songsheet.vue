@@ -118,5 +118,5 @@ export default {
 
 <style lang="scss" type="text/css">
 @import  "./songsheet";
-@import "../common/common"
+@import "../../scss/common"
 </style>
