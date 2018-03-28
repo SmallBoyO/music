@@ -72,6 +72,9 @@ export default {
     },
     curTime () {
       return this.$store.state.playingSongs.curTime
+    },
+    playingsongsurl () {
+      return this.$store.state.playingSongs.songUrl
     }
   },
   methods: {
@@ -128,9 +131,11 @@ export default {
   },
   created () {
     getMusicUrlById({id: this.$route.params.id}).then(data => {
-      this.$store.commit('changePlayingStatus', false)
-      console.log('getMusicUrlById')
-      this.$store.commit('changeSongs', data.data[0].url)
+      if (this.playingsongsurl !== data.data[0].url) {
+        this.$store.commit('changePlayingStatus', false)
+        console.log('getMusicUrlById')
+        this.$store.commit('changeSongs', data.data[0].url)
+      }
     })
     this.getlyric(this.$route.params.id)
     console.log(this.$route.params.id)

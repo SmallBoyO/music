@@ -38,9 +38,9 @@
           </em>
         </div>
         <div class="info">
-          <div class="info_content infohidden">
+          <div class="info_content" :class="songsheetinfohidden?'infohidden':''">
             <template v-for="(data,index) in descriptions">
-              <span>
+              <span :key="index">
                 <i>
                   {{data}}
                 </i>
@@ -48,6 +48,7 @@
               </span>
             </template>
           </div>
+          <span  :class="songsheetinfohidden?'u-arowdown':'u-arowup'" @click="changeSongSheetInfohidden"></span>
         </div>
       </section>
       <div class="song_list">
@@ -88,7 +89,8 @@ export default {
     return {
       songsheetinfo: {},
       descriptions: [],
-      user: {}
+      user: {},
+      songsheetinfohidden: true
     }
   },
   methods: {
@@ -108,6 +110,9 @@ export default {
     },
     play (id) {
       this.$router.push('/playmusic/' + id)
+    },
+    changeSongSheetInfohidden () {
+      this.songsheetinfohidden = !this.songsheetinfohidden
     }
   },
   created () {

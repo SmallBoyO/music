@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import recommend from '@/components/recommend/recommend'
 // import playmusic from '@/components/playmusic/playmusic'
 // import songsheet from '@/components/songsheet/songsheet'
-const recommend = r => require.ensure([], () => r(require('@/components/recommend/recommend')), 'recommend')
+const home = r => require.ensure([], () => r(require('@/components/home/home')), 'recommend')
 const playmusic = r => require.ensure([], () => r(require('@/components/playmusic/playmusic')), 'playmusic')
 const songsheet = r => require.ensure([], () => r(require('@/components/songsheet/songsheet')), 'songsheet')
 
@@ -13,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'recommend',
-      component: recommend
+      name: 'home',
+      component: home
     }, {
       path: '/playmusic/:id',
       component: playmusic
