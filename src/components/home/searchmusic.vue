@@ -138,7 +138,7 @@
 </template>
 <script>
 import {search, multimatch} from '../../api/search.js'
-import {getMusicUrlById} from '../../api/player.js'
+// import {getMusicUrlById} from '../../api/player.js'
 export default{
   data () {
     return {
@@ -156,6 +156,16 @@ export default{
         console.log(data)
       })
       search({word: this.searchstr}).then(data => {
+        this.searchresdata = data.result.songs
+        console.log(data)
+      })
+    },
+    historysearch (str) {
+      multimatch({word: str}).then(data => {
+        this.mutimatch = data.result
+        console.log(data)
+      })
+      search({word: str}).then(data => {
         this.searchresdata = data.result.songs
         console.log(data)
       })

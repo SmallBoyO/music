@@ -1,6 +1,6 @@
 <template>
   <div class="hotmusic">
-    <div class="hotmusiccontent">
+    <div class="hotmusiccontent" v-if="!isloading">
       <div class="hmhot">
         <div class="hottop">
           <div class="hottoppic">
@@ -39,14 +39,20 @@
         <span>查看完整榜单</span>
       </div>
     </div>
+    <loading v-show="isloading"></loading>
   </div>
 </template>
 <script>
 import {hotmusic} from '../../api/hot.js'
+import loading from '../common/loading'
 export default{
+  components: {
+    loading
+  },
   data () {
     return {
-      hotmusic: {}
+      hotmusic: {},
+      isloading: true
     }
   },
   methods: {
@@ -62,6 +68,7 @@ export default{
       console.log(this.hotmusic.playlist.tracks)
       console.table(this.hotmusic.playlist.tracks[7])
       console.table(this.hotmusic.playlist.tracks[8])
+      this.isloading = false
     })
   }
 }

@@ -50,8 +50,7 @@
 </template>
 
 <script>
-import {lyric, songdetail} from '../../api/player.js'
-import {getMusicUrlById} from '../../api/player.js'
+import {lyric, songdetail, getMusicUrlById} from '../../api/player.js'
 export default {
   data () {
     return {
