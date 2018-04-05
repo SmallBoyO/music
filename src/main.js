@@ -22,7 +22,6 @@ var mixin = {
       next()
     } else {
       console.log('保存组件')
-
       sess.setItem(fromRoute, JSON.stringify({history: true}))
       next()
     }

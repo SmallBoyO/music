@@ -24,8 +24,11 @@
                   {{data.name}}
                 </div>
                 <div class="songsinfo">
-                  <i class="sq_icon" v-if="data.h.vd==0"></i>
-                  xxx - Super love
+                  <i class="sq_icon"></i>
+                  <template v-for="(author,index) in data.ar">
+                    {{ index==0?author.name:' / '+author.name }}
+                  </template>
+                     - {{data.al.name}}
                 </div>
               </div>
               <div class="item_content_right">
@@ -68,6 +71,7 @@ export default{
       console.log(this.hotmusic.playlist.tracks)
       console.table(this.hotmusic.playlist.tracks[7])
       console.table(this.hotmusic.playlist.tracks[8])
+      console.log('stop loading')
       this.isloading = false
     })
   }

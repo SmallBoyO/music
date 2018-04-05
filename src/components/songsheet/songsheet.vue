@@ -1,6 +1,6 @@
 <template>
   <div class="songsheet">
-    <div class="playlist">
+    <div class="playlist" v-if="!isloading">
       <section class="sheetheader">
         <div class="head_bg" :style="getbg()">
         </div>
@@ -78,19 +78,25 @@
         </ol>
       </div>
     </div>
+    <loading v-if="isloading"></loading>
   </div>
 </template>
 
 <script>
 import {detail} from '../../api/songsheet.js'
 import {userdetail} from '../../api/user.js'
+import loading from '../common/loading'
 export default {
+  components: {
+    loading
+  },
   data () {
     return {
       songsheetinfo: {},
       descriptions: [],
       user: {},
-      songsheetinfohidden: true
+      songsheetinfohidden: true,
+      isloading: true
     }
   },
   methods: {
@@ -101,6 +107,8 @@ export default {
         this.descriptions = this.songsheetinfo.description.split('\n')
         userdetail({id: this.songsheetinfo.userId}).then(data => {
           this.user = data
+          console.log('------')
+          this.isloading = false
           console.log(data)
         })
       })

@@ -10,7 +10,7 @@
           </div>
         </form>
         <div class="search_default" v-if="!hasSearch && searchstr.length==0">
-          <section class="hot_list">
+          <!-- <section class="hot_list">
             <h3 class="title">热门搜索</h3>
             <ul class="list">
               <li class="item">
@@ -28,31 +28,14 @@
               <li class="item"><a href="#">徐ssssssss梦圆</a></li>
             </ul>
           </section>
+          -->
           <section class="search_history">
             <ul class="list">
-              <li class="item">
+              <li class="item" v-for="(data,index) in this.searchhistory" @click="historysearch(data)">
                 <i class="svg_history"></i>
                 <div class="histry">
-                  <span class="link">搜索词</span>
-                  <figure class="close">
-                    <i class="svg_close"></i>
-                  </figure>
-                </div>
-              </li>
-              <li class="item">
-                <i class="svg_history"></i>
-                <div class="histry">
-                  <span class="link">搜索词</span>
-                  <figure class="close">
-                    <i class="svg_close"></i>
-                  </figure>
-                </div>
-              </li>
-              <li class="item">
-                <i class="svg_history"></i>
-                <div class="histry">
-                  <span class="link">搜索词</span>
-                  <figure class="close">
+                  <span class="link">{{data}}</span>
+                  <figure class="close" @click.stop="remove(index)">
                     <i class="svg_close"></i>
                   </figure>
                 </div>
@@ -60,8 +43,8 @@
             </ul>
           </section>
         </div>
-        <section class="search_tuijian" v-if="!hasSearch && searchstr.length!=0">
-          <h3 class="title"  @click="search">
+        <section class="search_tuijian" v-if="searchstr.length!=0">
+          <h3 class="title" v-if="searchstr.length!=0"  @click="search">
             搜索"{{searchstr}}"
           </h3>
         </section>
@@ -145,7 +128,8 @@ export default{
       hasSearch: false,
       searchstr: '',
       searchresdata: [],
-      mutimatch: {}
+      mutimatch: {},
+      searchhistory: []
     }
   },
   methods: {
@@ -158,9 +142,16 @@ export default{
       search({word: this.searchstr}).then(data => {
         this.searchresdata = data.result.songs
         console.log(data)
+        this.searchstr = ''
       })
+      this.searchhistory.unshift(this.searchstr)
+      if (this.searchhistory.length > 15) {
+        this.searchhistory.pop()
+      }
+      window.localStorage.setItem('searchhistory', JSON.stringify(this.searchhistory))
     },
     historysearch (str) {
+      this.hasSearch = true
       multimatch({word: str}).then(data => {
         this.mutimatch = data.result
         console.log(data)
@@ -168,7 +159,13 @@ export default{
       search({word: str}).then(data => {
         this.searchresdata = data.result.songs
         console.log(data)
+        this.searchstr = ''
       })
+      this.searchhistory.unshift(str)
+      if (this.searchhistory.length > 15) {
+        this.searchhistory.pop()
+      }
+      window.localStorage.setItem('searchhistory', JSON.stringify(this.searchhistory))
     },
     getSearchItemClass (type) {
       return 'match_item ' + type
@@ -181,7 +178,15 @@ export default{
     playmusic (id) {
       console.log(id)
       this.$router.push('/playmusic/' + id)
+    },
+    remove (index) {
+      console.log('remove!!!!!')
+      this.searchhistory.splice(index, 1)
+      window.localStorage.setItem('searchhistory', JSON.stringify(this.searchhistory))
     }
+  },
+  created () {
+    this.searchhistory = JSON.parse(window.localStorage.getItem('searchhistory'))
   }
 }
 </script>
