@@ -34,9 +34,9 @@
               <div class="song_lrc">
                 <div class="song_scroll">
                   <div class="song_iner" :style="song_linertransform">
-                    <p class="song_lritem" :style="wordstyle(index)" v-for="(data,index) in lyrics" :key="index+''">
+                    <p class="song_lritem" :style="wordstyle(index)" v-for="(data,index) in lyrics" :key="index+''" ref="lyrics">
                       <span class="song_lrori">{{data}}</span>
-                      <span class="song_lrtra">&nbsp;</span>
+                      <span class="song_lrtra">{{translyrics[index]}}</span>
                     </p>
                   </div>
                 </div>
@@ -56,6 +56,7 @@ export default {
     return {
       translateY: 0,
       lyrics: [], // 字幕
+      translyrics: [], // 翻译字幕
       lyrictimes: [], // 字幕时间节点
       currentlyricsindex: 0, // 当前字幕位置
       song: {}
@@ -98,11 +99,10 @@ export default {
         var templyrics = []
 
         var splitresult = data.lrc.lyric.split('\n')
-
         for (var lyric in splitresult) {
           if (splitresult[lyric] !== '') {
             console.log(splitresult[lyric].replace(' ', ''))
-            var patt = /\[(\S+)\]/
+            let patt = /\[(\S+)\]/
             if (patt.test(data.lrc.lyric.split('\n')[lyric])) {
               if (data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1] !== '') {
                 tempdata.push(splitresult[lyric].replace(' ', '').match('\\[(\\S+)\\]')[1])
@@ -111,9 +111,24 @@ export default {
             }
           }
         }
+        var temptlyrics = []
+        var tlyricsplitresult = data.tlyric.lyric.split('\n')
+        for (var tlyric in tlyricsplitresult) {
+          if (tlyricsplitresult[tlyric] !== '') {
+            console.log(tlyricsplitresult[tlyric].replace(' ', ''))
+            let patt = /\[(\S+)\]/
+            if (patt.test(data.tlyric.lyric.split('\n')[tlyric])) {
+              if (data.tlyric.lyric.split('\n')[tlyric].match('\\]([\\S,\\s]*)')[1] !== '') {
+                temptlyrics.push(data.tlyric.lyric.split('\n')[tlyric].match('\\]([\\S,\\s]*)')[1])
+              }
+            }
+          }
+        }
         this.lyrics = templyrics
         this.lyrictimes = tempdata
+        this.translyrics = temptlyrics
         console.log(tempdata)
+        console.log(temptlyrics)
       })
     },
     wordstyle (index) {
@@ -155,9 +170,15 @@ export default {
       }
       this.currentlyricsindex = currenttime
       if (currenttime < 1) {
-        this.translateY = -49 * 0
+        this.translateY = 0
       } else {
-        this.translateY = -49 * currenttime + 49 * 1
+        let step = this.$refs['lyrics'][currenttime - 1].offsetHeight
+        let overflow = 0
+        for (let i = 0; i < currenttime; i++) {
+          overflow = overflow - this.$refs['lyrics'][i].offsetHeight
+        }
+        // console.log('!!' + step)
+        this.translateY = overflow + this.$refs['lyrics'][0].offsetHeight
       }
     }
   }

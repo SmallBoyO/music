@@ -31,7 +31,7 @@
           -->
           <section class="search_history">
             <ul class="list">
-              <li class="item" v-for="(data,index) in this.searchhistory" @click="historysearch(data)">
+              <li class="item" v-for="(data,index) in this.searchhistory" @click="historysearch(data)" :key="index">
                 <i class="svg_history"></i>
                 <div class="histry">
                   <span class="link">{{data}}</span>
@@ -53,7 +53,7 @@
             <h3 class="title">最佳匹配</h3>
             <ul class="match_list">
               <template v-for="data in mutimatch.orders">
-                <li :class="getSearchItemClass(data)" v-for="childdata in mutimatch[data]">
+                <li :class="getSearchItemClass(data)" v-for="childdata in mutimatch[data]" :key="index">
                   <a href="#">
                     <div class="linkcover">
                       <figure class="piccover">
