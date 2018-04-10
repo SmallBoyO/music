@@ -102,11 +102,11 @@ export default {
         for (var lyric in splitresult) {
           if (splitresult[lyric] !== '') {
             console.log(splitresult[lyric].replace(' ', ''))
-            let patt = /\[(\S+)\]/
+            let patt = /\[(\S+?)\]/
             if (patt.test(data.lrc.lyric.split('\n')[lyric])) {
               if (data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1] !== '') {
-                tempdata.push(splitresult[lyric].replace(' ', '').match('\\[(\\S+)\\]')[1])
-                templyrics.push(data.lrc.lyric.split('\n')[lyric].match('\\]([\\S,\\s]*)')[1])
+                tempdata.push(splitresult[lyric].replace(' ', '').match('\\[(\\S+?)\\]')[1])
+                templyrics.push(data.lrc.lyric.split('\n')[lyric].match('\\](?!\\[)([\\S,\\s]*)')[1])
               }
             }
           }
@@ -119,7 +119,7 @@ export default {
             let patt = /\[(\S+)\]/
             if (patt.test(data.tlyric.lyric.split('\n')[tlyric])) {
               if (data.tlyric.lyric.split('\n')[tlyric].match('\\]([\\S,\\s]*)')[1] !== '') {
-                temptlyrics.push(data.tlyric.lyric.split('\n')[tlyric].match('\\]([\\S,\\s]*)')[1])
+                temptlyrics.push(data.tlyric.lyric.split('\n')[tlyric].match('\\](?!\\[)([\\S,\\s]*)')[1])
               }
             }
           }
