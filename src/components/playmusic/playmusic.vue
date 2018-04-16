@@ -36,7 +36,7 @@
                   <div class="song_iner" :style="song_linertransform">
                     <p class="song_lritem" :style="wordstyle(index)" v-for="(data,index) in lyrics" :key="index+''" ref="lyrics">
                       <span class="song_lrori">{{data}}</span>
-                      <span class="song_lrtra">{{translyrics[index]}}</span>
+                      <span class="song_lrtra">{{translyrics.length>0?translyrics[index]:'&nbsp;'}}</span>
                     </p>
                   </div>
                 </div>
@@ -112,14 +112,16 @@ export default {
           }
         }
         var temptlyrics = []
-        var tlyricsplitresult = data.tlyric.lyric.split('\n')
-        for (var tlyric in tlyricsplitresult) {
-          if (tlyricsplitresult[tlyric] !== '') {
-            console.log(tlyricsplitresult[tlyric].replace(' ', ''))
-            let patt = /\[(\S+)\]/
-            if (patt.test(data.tlyric.lyric.split('\n')[tlyric])) {
-              if (data.tlyric.lyric.split('\n')[tlyric].match('\\]([\\S,\\s]*)')[1] !== '') {
-                temptlyrics.push(data.tlyric.lyric.split('\n')[tlyric].match('\\](?!\\[)([\\S,\\s]*)')[1])
+        if (data.tlyric.lyric !== null) {
+          var tlyricsplitresult = data.tlyric.lyric.split('\n')
+          for (var tlyric in tlyricsplitresult) {
+            if (tlyricsplitresult[tlyric] !== '') {
+              console.log(tlyricsplitresult[tlyric].replace(' ', ''))
+              let patt = /\[(\S+)\]/
+              if (patt.test(data.tlyric.lyric.split('\n')[tlyric])) {
+                if (data.tlyric.lyric.split('\n')[tlyric].match('\\]([\\S,\\s]*)')[1] !== '') {
+                  temptlyrics.push(data.tlyric.lyric.split('\n')[tlyric].match('\\](?!\\[)([\\S,\\s]*)')[1])
+                }
               }
             }
           }
